@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <script type="text/javascript" src = "ajax.js"></script>
+  <title>Ajax</title>
+  <link rel="stylesheet" href="ajax.css">
+  </head>
+  <body>
+    <div id="userCode"></div>
+    <div id="dataDisplay"></div>
+
+    <div id="addSection">
+      <h1>Create</h1>
+      Name: <input id="inputName" type="text"><br>
+      Height: <input id="inputHeight" type="text"><br>
+      Weight: <input id="inputWeight" type="text"><br>
+      <button type="submit" onclick="addRecord();">Add</button><br>
+      <div id="addResult"></div>
+    </div> 
+
+    <div id="editSection">
+      <h1>Update</h1>
+      ID: <input id="editId" type="text"><br> 
+      <button type="submit" onclick="fetchRecord();">Fetch</button><br>
+      Name: <input id="editName" type="text"><br>
+      Height: <input id="editHeight" type="text"><br>
+      Weight: <input id="editWeight" type="text"><br>
+      <button type="submit" onclick="updateRecord();">Update</button><br>
+      <div id="editResult"></div>      
+    </div> 
+
+    <div id="removeSection">
+      <h1>Delete</h1>
+      ID: <input id="removeId" type="text"><br> 
+      <button type="submit" onclick="deleteRecord();">Remove</button><br>
+      <div id="removeResult"></div>      
+    </div> 
+  </body>
+</html>
