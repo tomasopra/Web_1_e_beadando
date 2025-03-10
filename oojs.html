@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bevásárlólista</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: auto;
+            text-align: center;
+        }
+        input, button {
+            margin: 5px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bevásárlólista</h1>
+    <input type="text" id="itemName" placeholder="Termék neve">
+    <input type="number" id="itemPrice" placeholder="Ár">
+    <button id="addItem">Hozzáadás</button>
+    <ul id="shoppingList"></ul>
+
+    <script src="oojs.js"></script>
+
+</body>
+</html>
