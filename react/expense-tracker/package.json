@@ -1,6 +1,7 @@
 {
   "name": "expense-tracker",
   "private": true,
+  "homepage": "https://kngergootamas.nhely.hu/expense-tracker/dist/index.html",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
