@@ -1,7 +1,7 @@
 {
   "name": "todo",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://kngergootamas.nhely.hu/todo/dist/index.html",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
