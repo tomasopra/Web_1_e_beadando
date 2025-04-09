@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Táblázat - Web-programozás-1</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+
+        
+
+    </script>
+
+</head>
+<body>
+    <header>
+        <h1>Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Kezdőlap</a></li>
+            <li><a href="tablazat.html">Táblázat</a></li>
+            <li><a href="html5.html">HTML5</a></li>
+            <li><a href="chart.html">ChartJS</a></li>
+            <li><a href="ajax.html">AJAX</a></li>
+            <li><a href="oojs.html">OOJS</a></li>
+        </ul>
+    </nav>
+    <aside>
+        <p>Táblázat kezelési útmutató</p>
+    </aside>
+    <div class="content">
+        <h2>Táblázat</h2>
+        <form id="dataForm">
+            <input type="text" id="name" placeholder="Név" required minlength="2" maxlength="50">
+            <input type="number" id="age" placeholder="Életkor" required min="1" max="150">
+            <input type="text" id="city" placeholder="Város" required minlength="2" maxlength="50">
+            <button type="submit">Hozzáad</button>
+        </form>
+        <input type="text" id="search" placeholder="Keresés...">
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable('id')">ID</th>
+                    <th onclick="sortTable('name')">Név</th>
+                    <th onclick="sortTable('age')">Életkor</th>
+                    <th onclick="sortTable('city')">Város</th>
+                    <th>Műveletek</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <footer>
+        <p>Készítők: Opra Tamás (ABC123), Kádár-Németh Gergő (TVJBF5)</p>
+    </footer>
+    <script src="script.js"></script>
+    <script >
+
+let tableData = [
+            { id: 1, name: "Péter", age: 25, city: "Budapest" },
+            { id: 2, name: "Anna", age: 30, city: "Debrecen" },
+            { id: 3, name: "János", age: 22, city: "Szeged" },
+            { id: 4, name: "Eszter", age: 28, city: "Pécs" }
+        ];
+
+        function renderTable(data = tableData) {
+            const tbody = document.querySelector("#dataTable tbody");
+            tbody.innerHTML = "";
+            data.forEach(row => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${row.id}</td>
+                    <td>${row.name}</td>
+                    <td>${row.age}</td>
+                    <td>${row.city}</td>
+                    <td>
+                        <button onclick="editRow(${row.id})">Szerkesztés</button>
+                        <button onclick="deleteRow(${row.id})">Törlés</button>
+                    </td>`;
+                tbody.appendChild(tr);
+            });
+        }
+
+        document.getElementById("dataForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const name = document.getElementById("name").value;
+            const age = document.getElementById("age").value;
+            const city = document.getElementById("city").value;
+            const newId = tableData.length ? Math.max(...tableData.map(d => d.id)) + 1 : 1;
+            tableData.push({ id: newId, name, age: Number(age), city });
+            renderTable();
+            e.target.reset();
+        });
+
+        function deleteRow(id) {
+            tableData = tableData.filter(row => row.id !== id);
+            renderTable();
+        }
+
+        function editRow(id) {
+            const row = tableData.find(r => r.id === id);
+            document.getElementById("name").value = row.name;
+            document.getElementById("age").value = row.age;
+            document.getElementById("city").value = row.city;
+            deleteRow(id);
+        }
+
+        function sortTable(column) {
+            tableData.sort((a, b) => (a[column] > b[column] ? 1 : -1));
+            renderTable();
+        }
+
+        document.getElementById("search").addEventListener("input", (e) => {
+            const query = e.target.value.toLowerCase();
+            const filteredData = tableData.filter(row =>
+                Object.values(row).some(val => String(val).toLowerCase().includes(query))
+            );
+            renderTable(filteredData);
+        });
+
+        renderTable();
+
+    </script>
+</body>
+</html>

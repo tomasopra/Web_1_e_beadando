@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 - Web-programozás-1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Kezdőlap</a></li>
+            <li><a href="tablazat.html">Táblázat</a></li>
+            <li><a href="html5.html">HTML5</a></li>
+            <li><a href="chart.html">ChartJS</a></li>
+            <li><a href="ajax.html">AJAX</a></li>
+            <li><a href="oojs.html">OOJS</a></li>
+        </ul>
+    </nav>
+    <aside>
+        <p>HTML5 példák</p>
+    </aside>
+    <div class="content">
+        <h2>HTML5 Példák</h2>
+        <h3>Web Storage</h3>
+        <input id="storageInput" placeholder="Írj ide...">
+        <button onclick="saveStorage()">Mentés</button>
+        <p id="storageOutput"></p>
+
+        <h3>Web Workers</h3>
+        <button onclick="startWorker()">Számolás indítása</button>
+        <p id="workerOutput"></p>
+
+        <h3>Server-Sent Events</h3>
+        <p id="sseOutput">Várakozás...</p>
+
+        <h3>Geolocation API</h3>
+        <button onclick="getLocation()">Pozíció lekérése</button>
+        <p id="geoOutput"></p>
+
+        <h3>Drag and Drop API</h3>
+        <div id="dragBox" draggable="true" ondragstart="drag(event)">Húzd ide!</div>
+        <div id="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">Dobd ide!</div>
+
+        <h3>Canvas</h3>
+        <canvas id="myCanvas" width="200" height="100"></canvas>
+
+        <h3>SVG</h3>
+        <svg width="100" height="100">
+            <circle cx="50" cy="50" r="40" stroke="black" stroke-width="2" fill="red" />
+        </svg>
+    </div>
+    <footer>
+        <p>Készítők: Opra Tamás (ABC123), Kádár-Németh Gergő (TVJBF5)</p>
+    </footer>
+    <script src="script.js"></script>
+    <script >
+
+                // Web Storage
+        function saveStorage() {
+            const input = document.getElementById("storageInput").value;
+            localStorage.setItem("data", input);
+            document.getElementById("storageOutput").textContent = "Mentett adat: " + localStorage.getItem("data");
+        }
+
+        // Web Workers (külön fájlban kellene, de itt szimuláljuk)
+        function startWorker() {
+            const worker = new Worker(URL.createObjectURL(new Blob([`
+                let sum = 0;
+                for (let i = 0; i < 100000000; i++) sum += i;
+                postMessage(sum);
+            `], { type: "application/javascript" })));
+            worker.onmessage = (e) => {
+                document.getElementById("workerOutput").textContent = "Összeg: " + e.data;
+            };
+        }
+
+        // Server-Sent Events (szimuláció, mert nincs szerver)
+        const sseOutput = document.getElementById("sseOutput");
+        setInterval(() => {
+            sseOutput.textContent = "Szimulált üzenet: " + new Date().toLocaleTimeString();
+        }, 2000);
+
+        // Geolocation API
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((pos) => {
+                    document.getElementById("geoOutput").textContent = 
+                        `Szélesség: ${pos.coords.latitude}, Hosszúság: ${pos.coords.longitude}`;
+                }, () => {
+                    document.getElementById("geoOutput").textContent = "Helymeghatározás nem engedélyezett.";
+                });
+            }
+        }
+
+        // Drag and Drop API
+        function allowDrop(ev) { ev.preventDefault(); }
+        function drag(ev) { ev.dataTransfer.setData("text", ev.target.id); }
+        function drop(ev) {
+            ev.preventDefault();
+            const data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+
+        // Canvas
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "blue";
+        ctx.fillRect(50, 25, 100, 50);
+
+    </script>
+</body>
+</html>
