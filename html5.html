@@ -17,6 +17,7 @@
             <li><a href="chart.html">ChartJS</a></li>
             <li><a href="ajax.html">AJAX</a></li>
             <li><a href="oojs.html">OOJS</a></li>
+            <li><a href="react.html">React</a></li>
         </ul>
     </nav>
     <aside>
@@ -41,7 +42,7 @@
         <p id="geoOutput"></p>
 
         <h3>Drag and Drop API</h3>
-        <div id="dragBox" draggable="true" ondragstart="drag(event)">Húzd ide!</div>
+        <div id="dragBox" draggable="true" ondragstart="drag(event)">Fogd meg ezt!</div>
         <div id="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">Dobd ide!</div>
 
         <h3>Canvas</h3>
@@ -53,7 +54,7 @@
         </svg>
     </div>
     <footer>
-        <p>Készítők: Opra Tamás (ABC123), Kádár-Németh Gergő (TVJBF5)</p>
+        <p>Készítők: Opra Tamás (V834YX), Kádár-Németh Gergő (TVJBF5)</p>
     </footer>
     <script src="script.js"></script>
     <script >
@@ -64,6 +65,13 @@
             localStorage.setItem("data", input);
             document.getElementById("storageOutput").textContent = "Mentett adat: " + localStorage.getItem("data");
         }
+
+        window.addEventListener("DOMContentLoaded", () => {
+        const saved = localStorage.getItem("data");
+        if (saved) {
+            document.getElementById("storageOutput").textContent = "Mentett adat: " + saved;
+        }
+    });
 
         // Web Workers (külön fájlban kellene, de itt szimuláljuk)
         function startWorker() {

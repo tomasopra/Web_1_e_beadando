@@ -2,39 +2,42 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bevásárlólista</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 400px;
-            margin: auto;
-            text-align: center;
-        }
-        input, button {
-            margin: 5px;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px;
-            border-bottom: 1px solid #ddd;
-        }
-    </style>
+    <title>Web-programozás-1</title>
+    <link rel="stylesheet" href="style.css">
+
+
 </head>
 <body>
-
-    <h1>Bevásárlólista</h1>
-    <input type="text" id="itemName" placeholder="Termék neve">
-    <input type="number" id="itemPrice" placeholder="Ár">
-    <button id="addItem">Hozzáadás</button>
-    <ul id="shoppingList"></ul>
-
-    <script src="oojs.js"></script>
-
+    <header>
+        <h1>Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Kezdőlap</a></li>
+            <li><a href="tablazat.html">Táblázat</a></li>
+            <li><a href="html5.html">HTML5</a></li>
+            <li><a href="chart.html">ChartJS</a></li>
+            <li><a href="ajax.html">AJAX</a></li>
+            <li><a href="oojs.html">OOJS</a></li>
+            <li><a href="react.html">React</a></li>
+        </ul>
+    </nav>
+    <aside>
+        <p>Oldalsáv tartalma</p>
+    </aside>
+    <div class="content">
+        <h1>Bevásárlólista</h1>
+        <input type="text" id="itemName" placeholder="Termék neve">
+        <input type="number" id="itemPrice" placeholder="Ár">
+        <button id="addItem">Hozzáadás</button>
+        <ul id="shoppingList"></ul>
+    
+        <script src="oojs.js"></script>
+    </div>
+    <footer>
+        <p>Készítők: Opra Tamás (V834YX), Kádár-Németh Gergő (TVJBF5)</p>
+    </footer>
+    <script src="script.js">
+    </script>
 </body>
 </html>
